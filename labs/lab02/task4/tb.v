@@ -1,11 +1,49 @@
-// tb.v
-// Given -- do not modify.
-//
-// Instantiates all three of your AND-gate implementations side by side and
-// drives them with the SAME fast-toggling stimulus, so you can compare all
-// three waveforms in one view and see directly which implementation(s)
-// respond correctly to inputs that change faster than the delay.
+module and_df (
+  input  a,
+  input  b,
+  output wire y
+);
 
+  assign #5 y = a & b;
+
+endmodule
+
+
+// =======================================================
+// 2. Behavioral Implementation (Delay-Before-Assignment)
+// =======================================================
+module and_beh_before (
+  input      a,
+  input      b,
+  output reg y
+);
+
+  always @(a, b) begin
+    #5 y = a & b;
+  end
+
+endmodule
+
+
+// =======================================================
+// 3. Behavioral Implementation (Intra-Assignment Delay)
+// =======================================================
+module and_beh_intra (
+  input      a,
+  input      b,
+  output reg y
+);
+
+  always @(a, b) begin
+    y = #5 (a & b);
+  end
+
+endmodule
+
+
+// =======================================================
+// 4. Testbench Driver
+// =======================================================
 module tb;
 
   reg  t_a, t_b;
