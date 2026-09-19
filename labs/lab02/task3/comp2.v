@@ -7,6 +7,11 @@
 // its own -- you should not need to inspect the code below to find it.
 // Write your testbench first, let it tell you something is wrong, THEN
 // come back and fix this file.
+// tb.v
+// Self-checking testbench for comp2.v
+
+// comp2_tb.v — Combined Design and Self-Checking Testbench
+
 
 module comp2 (
   input  [1:0] A,
@@ -17,7 +22,11 @@ module comp2 (
 );
 
   assign EQ = (A == B);
-  assign GT = (A >= B);
-  assign LT = (A <  B);
+  assign GT = (A > B);
+  assign LT = (A < B);
 
 endmodule
+
+
+
+
